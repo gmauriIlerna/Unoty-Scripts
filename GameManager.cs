@@ -20,10 +20,6 @@ public class GameManager : MonoBehaviour
 
     public void SwitchTurn()
     {
-
-        /*Debug.Log("SwitchTurn() called! IsPlayerOneTurn: " + IsPlayerOneTurn +
-              " | Called from: " + new System.Diagnostics.StackTrace());*/
-
         IsPlayerOneTurn = !IsPlayerOneTurn;
 
         if (!IsPlayerOneTurn)

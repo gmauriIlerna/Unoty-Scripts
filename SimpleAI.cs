@@ -117,7 +117,6 @@ public class SimpleAI : MonoBehaviour
 
         if (playedCard.Type == Card.CardType.Wild || playedCard.Type == Card.CardType.Wild_Draw)
         {
-            Debug.Log("Card played " + playedCard + " last card: " + lastCardPlayed + " ai card is wild");
             return true;
         }
         else
@@ -125,7 +124,6 @@ public class SimpleAI : MonoBehaviour
 
             if (lastCardPlayed.Type == Card.CardType.Wild || lastCardPlayed.Type == Card.CardType.Wild_Draw)
             {
-                Debug.Log("Card played " + playedCard + " last card: " + lastCardPlayed + " my card was wild");
                 return true;
             }
             else
@@ -133,13 +131,11 @@ public class SimpleAI : MonoBehaviour
 
                 if (playedCard.Type == Card.CardType.Number)
                 {
-                    Debug.Log("Card played " + playedCard + " last card: " + lastCardPlayed + " ai card is same number");
                     return (playedCard.Color == lastCardPlayed.Color) || // Same color
                                    (playedCard.Number == lastCardPlayed.Number); ;
                 }
                 else if (playedCard.Type == lastCardPlayed.Type || playedCard.Color == lastCardPlayed.Color)
                 {
-                    Debug.Log("Card played " + playedCard + " last card: " + lastCardPlayed + " ai card is the same type or color");
                     return true;
                 }
             }

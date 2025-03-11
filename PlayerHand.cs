@@ -198,6 +198,7 @@ public class PlayerHand : MonoBehaviour
         if (cardsInHand.Count >= 7)
         {
             Debug.Log("Max cards");
+            GameManager.Instance.SwitchTurn();
             return;
         }
         // Get the player hand from CardManager or any other relevant class for drawing a card
