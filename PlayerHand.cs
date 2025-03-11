@@ -157,7 +157,7 @@ public class PlayerHand : MonoBehaviour
         {
             SelectCard(selectedIndex);
         }
-
+        GameManager.Instance.checkWinner();
         GameManager.Instance.SwitchTurn();
     }
 

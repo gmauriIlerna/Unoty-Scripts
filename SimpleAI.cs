@@ -94,6 +94,7 @@ public class SimpleAI : MonoBehaviour
 
                 Debug.Log("AI played: " + selectedCardData.card.Type + " " + selectedCardData.card.Color);
 
+                GameManager.Instance.checkWinner();
                 // Switch turn back to player
                 GameManager.Instance.SwitchTurn();
             }
