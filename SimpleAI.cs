@@ -96,6 +96,11 @@ public class SimpleAI : MonoBehaviour
 
                 GameManager.Instance.checkWinner();
                 // Switch turn back to player
+                if (selectedCardData.card.Type == CardType.Skip || selectedCardData.card.Type == CardType.Reverse)
+                {
+                    GameManager.Instance.SwitchTurn();
+                }
+
                 GameManager.Instance.SwitchTurn();
             }
             else

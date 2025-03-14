@@ -131,7 +131,7 @@ public class PlayerHand : MonoBehaviour
 
         if (!isValidPlay)
         {
-            Debug.Log("Invalid move! You must play a card with the same color or number.");
+            Debug.Log("Invalid move! You must play a card with the same color or number. Your card: " + selectedCardData.card + " last card played: " + lastCardPlayed);
             return; // Prevent playing an invalid card
         }
 
@@ -158,6 +158,13 @@ public class PlayerHand : MonoBehaviour
             SelectCard(selectedIndex);
         }
         GameManager.Instance.checkWinner();
+
+
+        if (selectedCardData.card.Type == CardType.Skip || selectedCardData.card.Type == CardType.Reverse)
+        {
+            GameManager.Instance.SwitchTurn();
+        }
+
         GameManager.Instance.SwitchTurn();
     }
 
@@ -195,10 +202,10 @@ public class PlayerHand : MonoBehaviour
 
     private void DrawNewCard()
     {
+        GameManager.Instance.SwitchTurn();
         if (cardsInHand.Count >= 7)
         {
             Debug.Log("Max cards");
-            GameManager.Instance.SwitchTurn();
             return;
         }
         // Get the player hand from CardManager or any other relevant class for drawing a card
