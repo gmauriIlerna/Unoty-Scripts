@@ -100,7 +100,7 @@ public class SimpleAI : MonoBehaviour
                 {
                     GameManager.Instance.SwitchTurn();
                 }
-
+                checkDraw(selectedCardData);
                 GameManager.Instance.SwitchTurn();
             }
             else
@@ -150,7 +150,7 @@ public class SimpleAI : MonoBehaviour
         return false;
     }
 
-    private void DrawNewCard()
+    public void DrawNewCard()
     {
         PlayerHand playerHand = this.GetComponent<PlayerHand>();
         if (playerHand.cardsInHand.Count >= 7)
@@ -162,6 +162,27 @@ public class SimpleAI : MonoBehaviour
         if (CardManager.Instance != null)
         {
             CardManager.Instance.DrawCard(transform); // Call CardManager's draw method
+        }
+    }
+
+    public void checkDraw(CardData selectedCardData)
+    {
+        GameObject obj = GameObject.FindGameObjectWithTag("P1Hand");
+        PlayerHand playerHand = obj.GetComponent<PlayerHand>();
+        //Debug.Log("Making player draw");
+        if (selectedCardData.card.Type == Card.CardType.Draw)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                playerHand.DrawNewCard();
+            }
+        }
+        else if (selectedCardData.card.Type == Card.CardType.Wild_Draw)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                playerHand.DrawNewCard();
+            }
         }
     }
 }

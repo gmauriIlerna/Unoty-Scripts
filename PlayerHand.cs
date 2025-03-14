@@ -51,6 +51,7 @@ public class PlayerHand : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             DrawNewCard();
+            GameManager.Instance.SwitchTurn();
         }
     }
 
@@ -164,8 +165,26 @@ public class PlayerHand : MonoBehaviour
         {
             GameManager.Instance.SwitchTurn();
         }
-
+        checkDraw(selectedCardData);
         GameManager.Instance.SwitchTurn();
+    }
+
+    public void checkDraw(CardData selectedCardData)
+    {
+
+        if (selectedCardData.card.Type == Card.CardType.Draw)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                SimpleAI.Instance.DrawNewCard();
+            }
+        } else if (selectedCardData.card.Type == Card.CardType.Wild_Draw)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                SimpleAI.Instance.DrawNewCard();
+            }
+        }
     }
 
     public void AddCardToHand(GameObject cardObject)
@@ -200,9 +219,8 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    private void DrawNewCard()
+    public void DrawNewCard()
     {
-        GameManager.Instance.SwitchTurn();
         if (cardsInHand.Count >= 7)
         {
             Debug.Log("Max cards");
