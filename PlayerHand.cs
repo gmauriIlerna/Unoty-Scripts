@@ -55,6 +55,41 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
+    public void callSelectLeft()
+    {
+        SelectCard((selectedIndex - 1 + cardsInHand.Count) % cardsInHand.Count);
+    }
+
+    public void callSelectRight()
+    {
+        SelectCard((selectedIndex + 1) % cardsInHand.Count);
+    }
+
+    public void callPlayCard()
+    {
+        if (GameManager.Instance.IsPlayerOneTurn)
+        {
+            PlayCard();
+        }
+        else
+        {
+            Debug.Log("Not player's turn");
+        }
+    }
+
+    public void callDrawNewCard()
+    {
+        if (GameManager.Instance.IsPlayerOneTurn)
+        {
+            DrawNewCard();
+            GameManager.Instance.SwitchTurn();
+        }
+        else
+        {
+            Debug.Log("Not player's turn");
+        }
+    }
+
     private void SelectCard(int newIndex)
     {
         if (cardsInHand.Count == 0) return;
